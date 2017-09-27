@@ -138,7 +138,6 @@ public:
 
     // remove trailing zeros
     bignum_storage& prune_zeros() {
-    	// 300210000 100
     	auto x = std::find_if_not(m_blk.rbegin(), m_blk.rend(), [](auto x) {
     		return x == digit_type(0);
     	});
@@ -365,15 +364,11 @@ protected:
               *it++ = f(d1, d2);
           });
           if (f.has_carry()) tmp.push_back(f.carry);
-//          std::for_each(tmp.begin(), tmp.end(), [](auto&& c) { std::cout << char('0'+c) << ", "; });
           tmp.prune_zeros();
-//          big_unsigned x(std::move(tmp));
-//          std::cout << "x = " << x << std::endl;
 
           ret += big_unsigned(std::move(tmp));
           ++i;
         });
-//      std::cout << n1.size() << ", " << n2.size() << std::endl;
       return ret;
     }
 
@@ -439,8 +434,6 @@ protected:
 
           z2 += z3;
           z2 += z0;
-//        std::cout << n1 << "*" << n2  << "==" << z2 << std::endl;
-          //if (m <= 100) assert(z2 == classic_mul(n1, n2));
           return z2;
     	}
     }
